@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad Didáctica en Diálisis Peritoneal | Yerlis Berrio Barrios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #0e7490;
+            --accent: #d97706;
+            --accent-light: #f59e0b;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-soft: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --radius: 0.75rem;
+        }
+
+        [data-theme="dark"] {
+            --text: #f1f5f9;
+            --text-light: #94a3b8;
+            --bg: #0f172a;
+            --bg-soft: #1e293b;
+            --bg-card: #1e293b;
+            --border: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+
+        img { max-width: 100%; border-radius: var(--radius); }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-info {
+            background: rgba(0,0,0,0.2);
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-light);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .hero-meta {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .hero-meta p {
+            margin: 0.25rem 0;
+            font-size: 0.95rem;
+        }
+
+        .hero-meta strong { color: var(--primary); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--secondary);
+        }
+
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .hero-img {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.95), transparent);
+            padding: 2rem;
+            color: white;
+        }
+
+        /* Content Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+            padding: 4rem 0;
+        }
+
+        /* Posts */
+        .section-title {
+            font-size: 1.875rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .post-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .post-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .post-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .post-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-right: 6rem;
+        }
+
+        .post-meta {
+            opacity: 0.9;
+            font-size: 0.875rem;
+        }
+
+        .post-body {
+            padding: 2rem;
+        }
+
+        .post-body h4 {
+            color: var(--primary);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .post-body h4:first-child { margin-top: 0; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .content-box {
+            background: var(--bg-soft);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .content-box h5 {
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content-box ul {
+            margin-left: 1.25rem;
+            font-size: 0.95rem;
+        }
+
+        .content-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h5 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:nth-child(even) {
+            background: var(--bg-soft);
+        }
+
+        .day-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .day-card:hover {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .day-hours {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .widget {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .widget-title {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-list a {
+            display: block;
+            padding: 0.75rem;
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--accent);
+            padding-left: 1rem;
+        }
+
+        .competence-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .competence-icon {
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-top: 0.2rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateX(5px);
+        }
+
+        .download-btn i {
+            font-size: 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+        }
+
+        .footer-section p, .footer-section li {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            opacity: 0.8;
+            font-size: 0.875rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                padding: 1rem;
+                display: none;
+            }
+            nav.active {
+                display: block;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <header>
+        <div class="header-info">
+            <div class="container">
+                <i class="fas fa-graduation-cap"></i> Cartilla Digital Educativa - Pedagogía y Currículo - Entrega: 20/02/2026
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-kidney"></i>
+                    </div>
+                    <span>Unidad Didáctica DP</span>
+                </a>
+
+                <button class="mobile-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#fundamentos">Fundamentos</a></li>
+                        <li><a href="#contexto">Contexto</a></li>
+                        <li><a href="#desarrollo">Desarrollo</a></li>
+                        <li><a href="#evaluacion">Evaluación</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <span class="badge">
+                        <i class="fas fa-book-open"></i> Semana #6
+                    </span>
+                    <h1>Unidad Didáctica en Diálisis Peritoneal</h1>
+                    <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                        Educación en Autocuidado para Pacientes de Diálisis Peritoneal basado en la metodología de <strong>Jiménez & Faus (2019)</strong> y <strong>Colombia Aprende</strong>.
+                    </p>
+
+                    <div class="hero-meta">
+                        <p><strong>Estudiante:</strong> Yerlis Berrio Barrios</p>
+                        <p><strong>Materia:</strong> Pedagogía y Currículo</p>
+                        <p><strong>Profesor:</strong> Jose Alonso Andrade Salasar</p>
+                        <p><strong>Fecha de Entrega:</strong> 20/02/2026</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Sesiones</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">25h</div>
+                            <div class="stat-label">Total horas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Objetivos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Educación en Diálisis">
+                    <div class="hero-overlay">
+                        <h3>Centro de Diálisis Santa Margarita</h3>
+                        <p>Lunes a Sábado: 06:00 - 14:00 hrs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="main-layout">
+            <div class="content">
+                <!-- FUNDAMENTOS TEÓRICOS -->
+                <h2 class="section-title" id="fundamentos">
+                    <i class="fas fa-book"></i> 01. Fundamentos Teóricos
+                </h2>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Definición</span>
+                        <h3>¿Qué es una Unidad Didáctica?</h3>
+                        <div class="post-meta">Según Escamilla (1993) y Sáenz-López (1997)</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="highlight-box">
+                            <h5><i class="fas fa-quote-left"></i> Definición de Escamilla (1993)</h5>
+                            <p style="font-style: italic; margin: 0;">"La unidad didáctica es una forma de planificar el proceso de enseñanza-aprendizaje alrededor de un elemento de contenido que se convierte en eje integrador del proceso, aportándole consistencia y significatividad."</p>
+                        </div>
+
+                        <p>Esta forma de organizar conocimientos y experiencias debe considerar la diversidad de elementos que contextualizan el proceso: nivel de desarrollo del alumno, medio sociocultural y familiar, proyecto curricular y recursos disponibles.</p>
+
+                        <h4>Aportación de Sáenz-López (1997)</h4>
+                        <p>La unidad didáctica es el paso previo a la práctica a través de la sesión. Su diseño puede ser muy personal en función del centro, de los alumnos y del profesor.</p>
+
+                        <h4>En el Contexto de Salud</h4>
+                        <p>La unidad didáctica en educación para la salud se convierte en una herramienta fundamental para capacitar al paciente en el autocuidado, permitiéndole desarrollar conocimientos, actitudes y habilidades necesarias para gestionar su tratamiento de manera autónoma y segura.</p>
+
+                        <div class="content-box" style="margin-top: 1.5rem;">
+                            <h5>Según Fernández, García y Posada (1993)</h5>
+                            <p>Una unidad didáctica completa debe incluir: <strong>objetivos, contenidos, actividades y evaluación</strong>.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Estructura</span>
+                        <h3>Elementos Estructurales de la Unidad Didáctica</h3>
+                        <div class="post-meta">Basado en Contreras (1998), Viviana (2002), Baena et al. (2008)</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Elemento</th>
+                                        <th>Descripción</th>
+                                        <th>Función</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Descripción</strong></td>
+                                        <td>Título, justificación, contextualización, conocimientos previos, número de sesiones y momento de implementación</td>
+                                        <td>→ Define el marco general</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Objetivos</strong></td>
+                                        <td>Establecer objetivos didácticos expresados en términos de capacidades y competencias a desarrollar</td>
+                                        <td>→ 6-8 objetivos específicos</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Competencias</strong></td>
+                                        <td>Competencias clave que debe haber desarrollado el estudiante al finalizar la unidad</td>
+                                        <td>→ Aprendizajes imprescindibles</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Contenidos</strong></td>
+                                        <td>Conceptuales, procedimentales y actitudinales organizados de forma significativa</td>
+                                        <td>→ Sacados de los objetivos</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Actividades</strong></td>
+                                        <td>Secuencia de aprendizaje relacionada entre sí, con continuidad y coherencia pedagógica</td>
+                                        <td>→ Carácter de continuidad</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Recursos</strong></td>
+                                        <td>Materiales específicos necesarios para desarrollar las actividades planificadas</td>
+                                        <td>→ Materiales didácticos</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Organización</strong></td>
+                                        <td>Aspectos concretos de organización del espacio y tiempo requeridos</td>
+                                        <td>→ Temporalización</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Evaluación</strong></td>
+                                        <td>Criterios, indicadores, herramientas y momentos de valoración de los aprendizajes</td>
+                                        <td>→ Formativa y sumativa</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CONTEXTO EDUCATIVO -->
+                <h2 class="section-title" id="contexto" style="margin-top: 3rem;">
+                    <i class="fas fa-hospital"></i> 02. Contexto Educativo
+                </h2>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Escenario</span>
+                        <h3>Centro de Diálisis Santa Margarita</h3>
+                        <div class="post-meta">Análisis del entorno y necesidades educativas específicas</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="content-grid">
+                            <div class="content-box">
+                                <h5><i class="fas fa-building"></i> Institución</h5>
+                                <p>Unidad especializada en el tratamiento de enfermedad renal crónica mediante diálisis peritoneal, comprometida con la educación integral del paciente para lograr autonomía en el manejo domiciliario del tratamiento.</p>
+                            </div>
+                            <div class="content-box">
+                                <h5><i class="fas fa-clock"></i> Horario de Atención</h5>
+                                <p><strong>Días:</strong> Lunes a Sábado<br>
+                                <strong>Horario:</strong> 06:00 - 14:00 hrs<br>
+                                <small>El horario matutino permite aprovechar las horas de mayor lucidez cognitiva en pacientes adultos mayores.</small></p>
+                            </div>
+                        </div>
+
+                        <h4>Población Objetivo</h4>
+                        <div class="content-grid">
+                            <div>
+                                <ul style="margin-left: 1.5rem; line-height: 2;">
+                                    <li>Pacientes con ERC que inician tratamiento de diálisis peritoneal</li>
+                                    <li>Cuidadores designados (familiares o personas de apoyo)</li>
+                                    <li>Edad predominante: Adultos mayores (60+ años)</li>
+                                    <li>Nivel educativo: Variable (alfabetización completa)</li>
+                                </ul>
+                            </div>
+                            <div class="highlight-box" style="margin: 0;">
+                                <h5>Personal Educativo</h5>
+                                <p style="margin: 0;"><strong>Enfermera/o especialista en DP</strong> como educador principal:</p>
+                                <ul style="margin: 0.5rem 0 0 1.25rem; font-size: 0.9rem;">
+                                    <li>Reflexiva, empática y responsable</li>
+                                    <li>Capacidad de comunicación</li>
+                                    <li>Convencida de la filosofía del autocuidado</li>
+                                    <li>Formación en técnicas de enseñanza</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Necesidades</span>
+                        <h3>Análisis de Necesidades Educativas</h3>
+                        <div class="post-meta">Basado en Protocolo de enseñanza DP (2024) y Teoría de Dorothea Orem</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="content-grid">
+                            <div class="content-box">
+                                <h5>Saber (Conocimientos Teóricos)</h5>
+                                <ul>
+                                    <li>Función renal: Entender el funcionamiento normal del riñón y consecuencias de su falla</li>
+                                    <li>Membrana peritoneal: Comprender su funcionamiento como filtro natural</li>
+                                    <li>Modalidades de DP: Diferenciar CAPD y APD</li>
+                                    <li>Complicaciones: Reconocer peritonitis, infección del orificio, deshidratación</li>
+                                    <li>Balance hídrico: Relación peso, TA y líquidos</li>
+                                </ul>
+                            </div>
+                            <div class="content-box">
+                                <h5>Saber Hacer (Habilidades Prácticas)</h5>
+                                <ul>
+                                    <li>Técnica aséptica: Realizar intercambios sin contaminación</li>
+                                    <li>Conexión a cicladora: Manejo del equipo APD</li>
+                                    <li>Cura del catéter: Cuidados diarios del orificio</li>
+                                    <li>Toma de constantes: PA, FC, temperatura, peso</li>
+                                    <li>Registros: Documentar resultados de diálisis</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="content-box" style="margin-top: 1rem; border-left-color: var(--accent);">
+                            <h5 style="color: var(--accent);">Saber Ser (Desarrollo del Autocuidado)</h5>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <ul>
+                                    <li><strong>Responsabilidad:</strong> Asumir el control de su tratamiento</li>
+                                    <li><strong>Adherencia:</strong> Compromiso con el tratamiento</li>
+                                    <li><strong>Autonomía:</strong> Independencia en el manejo domiciliario</li>
+                                </ul>
+                                <ul>
+                                    <li><strong>Comunicación:</strong> Saber solicitar ayuda cuando sea necesario</li>
+                                    <li><strong>Adaptación:</strong> Integrar DP a la vida diaria</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top: 1.5rem;">
+                            <h5>Teoría de Dorothea Orem</h5>
+                            <p>El autocuidado es una acción voluntaria adquirida según el contexto sociocultural de la persona, con el objetivo de preservar la vida, salud y bienestar. La enfermera debe fomentar, motivar y apoyar al paciente para que pueda realizar el autocuidado, entendiendo que es parte de la consideración integral del paciente como un ser capacitado para conocer, elegir y realizar.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- DESARROLLO DE LA UNIDAD -->
+                <h2 class="section-title" id="desarrollo" style="margin-top: 3rem;">
+                    <i class="fas fa-chalkboard-teacher"></i> 03. Desarrollo de la Unidad Didáctica
+                </h2>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Identificación</span>
+                        <h3>"Autocuidado y Manejo Seguro de la Diálisis Peritoneal en el Domicilio"</h3>
+                        <div class="post-meta">Título estimulante según Jiménez & Faus (2019)</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="content-grid">
+                            <div>
+                                <h4>Temporalización</h4>
+                                <div class="stats-grid" style="margin-top: 1rem;">
+                                    <div class="stat-card">
+                                        <div class="stat-number">5</div>
+                                        <div class="stat-label">Sesiones</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">4-5h</div>
+                                        <div class="stat-label">Por sesión</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">20-25h</div>
+                                        <div class="stat-label">Total</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="highlight-box" style="margin: 0;">
+                                <h5>Justificación</h5>
+                                <p style="font-size: 0.95rem; margin: 0;">El entrenamiento del paciente es uno de los factores más importantes para lograr la diálisis peritoneal óptima. Su éxito depende directamente de la capacidad del paciente para realizar el tratamiento, lo cual está relacionado con su entrenamiento.</p>
+                            </div>
+                        </div>
+
+                        <h4>Destinatarios</h4>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Pacientes que inician tratamiento de DP</li>
+                            <li>Cuidadores designados (cuando aplique)</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-light);"><strong>Nota:</strong> El paciente debe ser el encargado de realizar la diálisis, pero si no es autosuficiente, se valora la ayuda de un cuidador.</p>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Objetivos</span>
+                        <h3>Objetivos y Competencias</h3>
+                        <div class="post-meta">Basado en LOE (2006) y metodología inversa de Jiménez & Faus</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="highlight-box">
+                            <h5>Objetivo General</h5>
+                            <p style="margin: 0; font-size: 1.05rem;">Capacitar al paciente y/o cuidador para realizar la diálisis peritoneal en su domicilio de forma autónoma, con seguridad y con resultados clínicos óptimos.</p>
+                        </div>
+
+                        <h4>Objetivos Específicos</h4>
+                        <div class="content-box">
+                            <ol style="margin-left: 1.5rem; line-height: 2;">
+                                <li>Disminuir la ansiedad y temor del paciente por iniciar DP en su domicilio</li>
+                                <li>Preparar, motivar y apoyar al paciente para fomentar el autocuidado, rehabilitación y autonomía</li>
+                                <li>Educar al paciente para desarrollar conocimientos, actitudes y habilidades que le capaciten</li>
+                                <li>Conseguir adaptación, adhesión eficiente e independencia del paciente</li>
+                                <li>Capacitar al paciente para prevenir, detectar y tratar las complicaciones</li>
+                                <li>Infundir confianza al paciente, asegurando el apoyo constante del equipo asistencial</li>
+                            </ol>
+                        </div>
+
+                        <h4 style="margin-top: 1.5rem;">Competencias Específicas</h4>
+                        <div class="content-grid">
+                            <div class="content-box">
+                                <h5>Competencia Técnica</h5>
+                                <p>Aplicar técnica aséptica correcta durante todo el procedimiento de DP</p>
+                            </div>
+                            <div class="content-box">
+                                <h5>Competencia de Detección</h5>
+                                <p>Reconocer signos de alerta: peritonitis, infección del orificio, contaminación, y verificar los insumos recibidos</p>
+                            </div>
+                            <div class="content-box">
+                                <h5>Competencia de Manejo</h5>
+                                <p>Manejar materiales y equipo de DP (bolsas, cicladora, material de cura)</p>
+                            </div>
+                            <div class="content-box">
+                                <h5>Competencia de Registro</h5>
+                                <p>Registrar parámetros: peso, TA, volumen infundido/drenado, glucemias</p>
+                            </div>
+                        </div>
+                        <div class="content-box" style="margin-top: 1rem;">
+                            <h5>Competencia Comunicativa</h5>
+                            <p>Comunicarse efectivamente con el equipo asistencial y solicitar ayuda</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Cronograma</span>
+                        <h3>Secuencia de Actividades y Temporalización</h3>
+                        <div class="post-meta">5 Días de Formación - Protocolo de enseñanza DP (2024)</div>
+                    </div>
+                    <div class="post-body">
+
+                        <div class="day-card">
+                            <div class="day-header">
+                                <span class="day-title"><i class="fas fa-calendar-day"></i> Día 1: Fundamentos y Cuidados Básicos</span>
+                                <span class="day-hours">4-5 horas</span>
+                            </div>
+                            <div class="content-grid">
+                                <div>
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Función renal y consecuencias de ERC</li>
+                                        <li>Membrana peritoneal como filtro</li>
+                                        <li>Cuidados del catéter (cura del orificio)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Demostraciones de técnica por la enfermera</li>
+                                        <li>Observación activa del paciente</li>
+                                        <li>Inicio de práctica guiada</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-card">
+                            <div class="day-header">
+                                <span class="day-title"><i class="fas fa-calendar-day"></i> Día 2: Modalidades y Equipos</span>
+                                <span class="day-hours">4-5 horas</span>
+                            </div>
+                            <div class="content-grid">
+                                <div>
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Modalidades de DP (CAPD y APD)</li>
+                                        <li>Manejo de materiales y equipos</li>
+                                        <li>Almacenamiento y conservación</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Práctica supervisada del paciente</li>
+                                        <li>Corrección de errores en tiempo real</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-card">
+                            <div class="day-header">
+                                <span class="day-title"><i class="fas fa-calendar-day"></i> Día 3: Complicaciones</span>
+                                <span class="day-hours">4-5 horas</span>
+                            </div>
+                            <div class="content-grid">
+                                <div>
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Complicaciones: prevención y detección</li>
+                                        <li>Signos de peritonitis</li>
+                                        <li>Balance hídrico y sus alteraciones</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Repaso y refuerzo de técnica</li>
+                                        <li>Desarrollo de habilidades motoras</li>
+                                        <li>Automatización de movimientos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-card">
+                            <div class="day-header">
+                                <span class="day-title"><i class="fas fa-calendar-day"></i> Día 4: Higiene y Registros</span>
+                                <span class="day-hours">4-5 horas</span>
+                            </div>
+                            <div class="content-grid">
+                                <div>
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Higiene personal y del entorno</li>
+                                        <li>Toma de constantes vitales</li>
+                                        <li>Registros y documentación</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Práctica consistente y fluida</li>
+                                        <li>Resolución de problemas</li>
+                                        <li>Manejo de alarmas en cicladora</li>
+                                        <li>Simulación de situaciones complejas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-card" style="border-color: var(--accent); background: #fffbeb;">
+                            <div class="day-header" style="border-bottom-color: var(--accent);">
+                                <span class="day-title" style="color: var(--accent);"><i class="fas fa-calendar-check"></i> Día 5: Evaluación Final</span>
+                                <span class="day-hours" style="background: var(--accent);">Evaluación</span>
+                            </div>
+                            <div class="content-grid">
+                                <div>
+                                    <h5 style="color: var(--accent); margin-bottom: 0.5rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li>Adaptación de DP a la vida diaria</li>
+                                        <li>Plan de seguimiento</li>
+                                        <li>Vías de comunicación con la unidad</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 style="color: var(--accent); margin-bottom: 0.5rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                        <li><strong>Evaluación práctica de competencias</strong></li>
+                                        <li>Demostración autónoma de técnica</li>
+                                        <li>Retroalimentación final</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top: 1.5rem;">
+                            <h5>Estrategias Metodológicas Aplicadas</h5>
+                            <ul style="margin-left: 1.25rem; margin-top: 0.5rem;">
+                                <li>De situaciones conocidas a desconocidas</li>
+                                <li>De conceptos simples a complejos</li>
+                                <li>Favorecer la práctica: <strong>"aprender haciendo"</strong></li>
+                                <li>Repasar y reforzar temas aprendidos</li>
+                                <li>Procedimientos estructurados y rituales</li>
+                                <li>Pactar metas con el paciente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- EVALUACIÓN -->
+                <h2 class="section-title" id="evaluacion" style="margin-top: 3rem;">
+                    <i class="fas fa-clipboard-check"></i> 04. Implementación y Seguimiento
+                </h2>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Evaluación</span>
+                        <h3>Sistema de Evaluación Formativa y Sumativa</h3>
+                        <div class="post-meta">Basado en Jiménez & Faus (2019) y Colombia Aprende</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="content-grid">
+                            <div class="content-box">
+                                <h5><i class="fas fa-sync-alt"></i> Evaluación Formativa</h5>
+                                <p>Proceso continuo durante cada sesión que permite ajustar la enseñanza según el progreso del paciente.</p>
+                                <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                    <li>Observación directa de habilidades motoras</li>
+                                    <li>Repaso de conceptos al inicio de sesión</li>
+                                    <li>Retroalimentación inmediata</li>
+                                    <li>No avanzar si no se comprenden conceptos clave</li>
+                                </ul>
+                            </div>
+                            <div class="content-box">
+                                <h5><i class="fas fa-check-circle"></i> Evaluación Sumativa</h5>
+                                <p>Evaluación final al término de las 5 sesiones para verificar el logro de competencias.</p>
+                                <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                    <li>Cuestionario teórico sobre conceptos esenciales</li>
+                                    <li>Demostración práctica autónoma</li>
+                                    <li>Reconocimiento de signos de alerta</li>
+                                    <li>Manejo de situaciones problemáticas</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4>Criterios de Evaluación</h4>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Criterio</th>
+                                        <th>Indicador</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Técnica Aséptica</td>
+                                        <td>Realiza el procedimiento usando técnica aséptica correcta</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Detección</td>
+                                        <td>Detecta contaminación y conoce la actuación</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Peritonitis</td>
+                                        <td>Reconoce signos de peritonitis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cura del catéter</td>
+                                        <td>Realiza cuidados del orificio del catéter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Balance hídrico</td>
+                                        <td>Identifica alteración del balance hídrico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Comunicación</td>
+                                        <td>Conoce vías de comunicación con la unidad</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Política</span>
+                        <h3>Evaluar para Avanzar</h3>
+                        <div class="post-meta">Estrategia de Colombia Aprende (ICFES 2024) aplicada a salud</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="highlight-box">
+                            <h5>¿Qué es Evaluar para Avanzar?</h5>
+                            <p>Estrategia gubernamental orientada a apoyar los procesos de enseñanza y aprendizaje a través de un conjunto de herramientas diseñadas desde el enfoque de evaluación formativa.</p>
+                        </div>
+
+                        <h4>Aplicación en el Contexto de Salud</h4>
+                        <div class="content-grid">
+                            <div class="content-box">
+                                <h5>1. Seguimiento Continuo</h5>
+                                <p>Evaluación formativa durante cada sesión para identificar avances y dificultades del paciente</p>
+                            </div>
+                            <div class="content-box">
+                                <h5>2. Identificación de Necesidades</h5>
+                                <p>Valorar necesidades específicas (limitaciones físicas, cognitivas, socio-familiares)</p>
+                            </div>
+                            <div class="content-box">
+                                <h5>3. Ajustes Metodológicos</h5>
+                                <p>Adaptar la enseñanza según el progreso. No avanzar si no se han comprendido conceptos clave</p>
+                            </div>
+                            <div class="content-box">
+                                <h5>4. Retroalimentación</h5>
+                                <p>Corrección inmediata de errores con explicaciones claras y refuerzo positivo</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-header">
+                        <span class="post-category">Seguimiento</span>
+                        <h3>Seguimiento y Sostenibilidad del Aprendizaje</h3>
+                        <div class="post-meta">Protocolo DP (2024) y Teoría de Orem</div>
+                    </div>
+                    <div class="post-body">
+                        <div class="content-grid">
+                            <div>
+                                <h4>Contacto Telefónico</h4>
+                                <ul style="margin-left: 1.25rem; margin-bottom: 1rem;">
+                                    <li><strong>Regular post-entrenamiento:</strong> Llamadas programadas para verificar adaptación domiciliaria</li>
+                                    <li><strong>Línea de emergencia 24/7:</strong> Disponibilidad para consultas urgentes fuera del horario habitual</li>
+                                    <li><strong>Resolución de dudas:</strong> Canal directo para aclarar inquietudes</li>
+                                </ul>
+
+                                <h4>Visitas Domiciliarias</h4>
+                                <ul style="margin-left: 1.25rem;">
+                                    <li>Periódicas programadas para evaluar entorno</li>
+                                    <li>Observación de técnica mantenida</li>
+                                    <li>Apoyo al cuidador</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Grupos de Apoyo</h4>
+                                <ul style="margin-left: 1.25rem; margin-bottom: 1rem;">
+                                    <li>Entre pacientes: intercambio de experiencias</li>
+                                    <li>Talleres de refuerzo grupales</li>
+                                    <li>Fortalecimiento emocional</li>
+                                </ul>
+
+                                <div class="highlight-box" style="margin: 0;">
+                                    <h5>Reentrenamientos Programados</h5>
+                                    <p style="margin-bottom: 0.5rem;"><strong>Primer Reentrenamiento:</strong> Después de 1 mes (verificación de técnica, resolución de dudas, evaluación de adaptación)</p>
+                                    <p style="margin: 0;"><strong>Periódicos:</strong> Cada 6 meses (actualización, verificación de competencias, detección de malos hábitos)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-box" style="margin-top: 1.5rem; border-left-color: var(--primary);">
+                            <h5>Detección de Pérdida y Mejora Continua</h5>
+                            <p>Vigilancia activa para identificar manifestaciones de pérdida de autocuidado e intervención temprana para recuperarlo. Documentación de resultados del programa educativo y ajustes basados en evidencia.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BIBLIOGRAFÍA -->
+                <h2 class="section-title" style="margin-top: 3rem;">
+                    <i class="fas fa-bookmark"></i> Referencias Bibliográficas
+                </h2>
+
+                <article class="post-card">
+                    <div class="post-body">
+                        <ul style="line-height: 2; font-size: 0.95rem;">
+                            <li><strong>Baena et al. (2008)</strong> - Elementos estructurales de la programación didáctica</li>
+                            <li><strong>Colombia Aprende (2024)</strong> - Evaluar para Avanzar. ICFES</li>
+                            <li><strong>Contreras (1998)</strong> - Diseño curricular y programación didáctica</li>
+                            <li><strong>Escamilla (1993)</strong> - Planificación de unidades didácticas</li>
+                            <li><strong>Fernández, García y Posada (1993)</strong> - Componentes de la unidad didáctica</li>
+                            <li><strong>Jiménez, M. & Faus, L. (2019)</strong> - Programar al revés: El diseño curricular desde los aprendizajes (pp. 65-77)</li>
+                            <li><strong>Pellicer (2019)</strong> - Educación para la salud</li>
+                            <li><strong>Protocolo de enseñanza DP (2024)</strong> - Entrenamiento en Diálisis Peritoneal</li>
+                            <li><strong>Sáenz-López (1997)</strong> - Práctica educativa y unidades didácticas</li>
+                            <li><strong>Viviana (2002)</strong> - Organización de la enseñanza</li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="widget">
+                    <h3 class="widget-title"><i class="fas fa-list"></i> Contenido</h3>
+                    <ul class="nav-list">
+                        <li><a href="#fundamentos"><i class="fas fa-book" style="margin-right: 0.5rem;"></i> Fundamentos Teóricos</a></li>
+                        <li><a href="#contexto"><i class="fas fa-hospital" style="margin-right: 0.5rem;"></i> Contexto Educativo</a></li>
+                        <li><a href="#desarrollo"><i class="fas fa-chalkboard-teacher" style="margin-right: 0.5rem;"></i> Desarrollo de la Unidad</a></li>
+                        <li><a href="#evaluacion"><i class="fas fa-clipboard-check" style="margin-right: 0.5rem;"></i> Evaluación y Seguimiento</a></li>
+                    </ul>
+                </div>
+
+                <div class="widget">
+                    <h3 class="widget-title"><i class="fas fa-bullseye"></i> Competencias</h3>
+                    <div class="competence-item">
+                        <i class="fas fa-hand-holding-medical competence-icon"></i>
+                        <div><strong>Técnica:</strong> Técnica aséptica correcta</div>
+                    </div>
+                    <div class="competence-item">
+                        <i class="fas fa-search competence-icon"></i>
+                        <div><strong>Detección:</strong> Signos de alerta</div>
+                    </div>
+                    <div class="competence-item">
+                        <i class="fas fa-cogs competence-icon"></i>
+                        <div><strong>Manejo:</strong> Equipos y materiales</div>
+                    </div>
+                    <div class="competence-item">
+                        <i class="fas fa-clipboard-list competence-icon"></i>
+                        <div><strong>Registro:</strong> Parámetros clínicos</div>
+                    </div>
+                    <div class="competence-item">
+                        <i class="fas fa-comments competence-icon"></i>
+                        <div><strong>Comunicación:</strong> Con equipo asistencial</div>
+                    </div>
+                </div>
+
+                <div class="widget" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
+                    <h3 class="widget-title" style="color: white; border-bottom-color: rgba(255,255,255,0.3);">
+                        <i class="fas fa-download"></i> Descargas
+                    </h3>
+                    <a href="#" class="download-btn" style="background: rgba(255,255,255,0.2);">
+                        <i class="fas fa-file-pdf"></i>
+                        <div>
+                            <div style="font-weight: 600;">Unidad Didáctica PDF</div>
+                            <div style="font-size: 0.8rem; opacity: 0.9;">Versión completa</div>
+                        </div>
+                    </a>
+                    <a href="#" class="download-btn" style="background: rgba(255,255,255,0.2);">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <div style="font-weight: 600;">Cronograma 5 Días</div>
+                            <div style="font-size: 0.8rem; opacity: 0.9;">Plantilla editable</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="widget">
+                    <h3 class="widget-title"><i class="fas fa-info-circle"></i> Información Académica</h3>
+                    <div style="font-size: 0.95rem; line-height: 1.8;">
+                        <p><strong>Estudiante:</strong><br>Yerlis Berrio Barrios</p>
+                        <p style="margin-top: 0.75rem;"><strong>Materia:</strong><br>Pedagogía y Currículo</p>
+                        <p style="margin-top: 0.75rem;"><strong>Profesor:</strong><br>Jose Alonso Andrade Salasar</p>
+                        <p style="margin-top: 0.75rem;"><strong>Fecha:</strong><br>20 de febrero de 2026</p>
+                        <p style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+                            <strong>Centro:</strong><br>Centro de Diálisis Santa Margarita<br>
+                            <small style="color: var(--text-light);">Lunes a Sábado: 06:00 - 14:00</small>
+                        </p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Unidad Didáctica en Diálisis Peritoneal</h4>
+                    <p>Recurso educativo desarrollado como parte de la materia Pedagogía y Currículo, aplicando la metodología de diseño inverso de Jiménez & Faus (2019) al contexto de la educación para la salud en enfermería nefrológica.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#fundamentos">Fundamentos Teóricos</a></li>
+                        <li><a href="#contexto">Contexto Educativo</a></li>
+                        <li><a href="#desarrollo">Desarrollo de la Unidad</a></li>
+                        <li><a href="#evaluacion">Evaluación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Referencias</h4>
+                    <ul>
+                        <li>Jiménez & Faus (2019)</li>
+                        <li>Colombia Aprende (2024)</li>
+                        <li>Protocolo DP (2024)</li>
+                        <li>Teoría de Orem</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 - Yerlis Berrio Barrios | Pedagogía y Currículo | Prof. Jose Alonso Andrade Salasar</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Basado en la metodología de Jiménez & Faus (2019) y Colombia Aprende</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Scroll Button
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mainNav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
