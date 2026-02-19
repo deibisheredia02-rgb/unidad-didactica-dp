@@ -2,7 +2,8 @@
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#1e3a8a">
     <title>Unidad Didáctica en Diálisis Peritoneal | Yerlis Berrio Barrios</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,20 +36,23 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { font-size: 16px; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-soft);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        img { max-width: 100%; border-radius: var(--radius); }
+        img { max-width: 100%; height: auto; border-radius: var(--radius); display: block; }
 
-        /* Header */
+        /* Header Mobile Optimized */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
@@ -60,84 +64,175 @@
 
         .header-info {
             background: rgba(0,0,0,0.2);
-            padding: 0.5rem 0;
-            font-size: 0.875rem;
+            padding: 0.5rem;
+            font-size: 0.75rem;
             text-align: center;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .header-info { display: block; font-size: 0.875rem; padding: 0.5rem 0; }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container { padding: 0 1.5rem; }
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .header-content { padding: 1rem 0; }
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 700;
+            z-index: 1001;
+        }
+
+        @media (min-width: 640px) {
+            .logo { font-size: 1.5rem; gap: 0.75rem; }
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 36px;
+            height: 36px;
             background: white;
             color: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 640px) {
+            .logo-icon { width: 45px; height: 45px; font-size: 1.25rem; }
+        }
+
+        /* Mobile Menu Overlay */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 58, 138, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            padding: 5rem 2rem 2rem;
+        }
+
+        nav.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         nav ul {
             display: flex;
+            flex-direction: column;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                position: static;
+                background: transparent;
+                backdrop-filter: none;
+                opacity: 1;
+                visibility: visible;
+                padding: 0;
+                display: block;
+            }
+            nav ul {
+                flex-direction: row;
+                gap: 2rem;
+                text-align: left;
+            }
         }
 
         nav a {
-            color: rgba(255,255,255,0.9);
-            font-weight: 500;
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+            display: block;
+            padding: 0.5rem;
             position: relative;
-            padding: 0.5rem 0;
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-light);
-            transition: width 0.3s ease;
+        @media (min-width: 768px) {
+            nav a {
+                font-size: 1rem;
+                font-weight: 500;
+                padding: 0.5rem 0;
+            }
+            nav a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--accent-light);
+                transition: width 0.3s ease;
+            }
+            nav a:hover::after { width: 100%; }
         }
-
-        nav a:hover::after { width: 100%; }
 
         .mobile-toggle {
-            display: none;
-            background: none;
+            background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.25rem;
             cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        /* Hero */
+        .mobile-toggle:hover { background: rgba(255,255,255,0.3); }
+
+        .mobile-toggle.active { background: white; color: var(--primary); }
+
+        @media (min-width: 768px) {
+            .mobile-toggle { display: none; }
+        }
+
+        /* Hero Mobile First */
         .hero {
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 4rem 0;
+            padding: 2rem 0;
             position: relative;
             overflow: hidden;
         }
@@ -146,11 +241,23 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
         }
 
+        @media (min-width: 768px) {
+            .hero { padding: 4rem 0; }
+        }
+
         .hero-content {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                display: grid;
+                grid-template-columns: 1.2fr 1fr;
+                gap: 3rem;
+                align-items: center;
+            }
         }
 
         .badge {
@@ -159,62 +266,105 @@
             gap: 0.5rem;
             background: var(--accent);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.375rem 0.75rem;
             border-radius: 50px;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             font-weight: 600;
             margin-bottom: 1rem;
         }
 
+        @media (min-width: 640px) {
+            .badge { padding: 0.5rem 1rem; font-size: 0.875rem; }
+        }
+
         .hero h1 {
-            font-size: 2.75rem;
-            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
             color: var(--primary);
             line-height: 1.2;
         }
 
+        @media (min-width: 640px) {
+            .hero h1 { font-size: 2.25rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 { font-size: 2.75rem; margin-bottom: 1rem; }
+        }
+
+        .hero > .container > .hero-content > div:first-child > p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 640px) {
+            .hero > .container > .hero-content > div:first-child > p {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
         .hero-meta {
             background: white;
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             border-left: 4px solid var(--accent);
+            font-size: 0.9rem;
         }
 
-        .hero-meta p {
-            margin: 0.25rem 0;
-            font-size: 0.95rem;
+        @media (min-width: 640px) {
+            .hero-meta { padding: 1rem 1.5rem; font-size: 0.95rem; }
         }
 
+        .hero-meta p { margin: 0.25rem 0; }
         .hero-meta strong { color: var(--primary); }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid { gap: 1rem; }
         }
 
         .stat-card {
             background: white;
-            padding: 1rem;
+            padding: 0.75rem 0.5rem;
             border-radius: var(--radius);
             text-align: center;
             box-shadow: var(--shadow);
             border-top: 3px solid var(--secondary);
         }
 
+        @media (min-width: 640px) {
+            .stat-card { padding: 1rem; }
+        }
+
         .stat-number {
-            font-size: 1.75rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary);
             font-family: 'Playfair Display', serif;
         }
 
+        @media (min-width: 640px) {
+            .stat-number { font-size: 1.75rem; }
+        }
+
         .stat-label {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--text-light);
+        }
+
+        @media (min-width: 640px) {
+            .stat-label { font-size: 0.875rem; }
         }
 
         .hero-img {
@@ -222,12 +372,25 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
+            order: -1;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-img { order: 0; }
         }
 
         .hero-img img {
             width: 100%;
-            height: 400px;
+            height: 250px;
             object-fit: cover;
+        }
+
+        @media (min-width: 640px) {
+            .hero-img img { height: 300px; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-img img { height: 400px; }
         }
 
         .hero-overlay {
@@ -236,36 +399,63 @@
             left: 0;
             right: 0;
             background: linear-gradient(to top, rgba(30, 58, 138, 0.95), transparent);
-            padding: 2rem;
+            padding: 1.5rem 1rem;
             color: white;
         }
 
-        /* Content Layout */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 3rem;
-            padding: 4rem 0;
+        @media (min-width: 640px) {
+            .hero-overlay { padding: 2rem; }
         }
 
-        /* Posts */
+        .hero-overlay h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .hero-overlay p { font-size: 0.875rem; opacity: 0.9; }
+
+        @media (min-width: 640px) {
+            .hero-overlay h3 { font-size: 1.25rem; }
+            .hero-overlay p { font-size: 1rem; }
+        }
+
+        /* Main Layout Mobile */
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        @media (min-width: 1024px) {
+            .main-layout {
+                display: grid;
+                grid-template-columns: 1fr 380px;
+                gap: 3rem;
+                padding: 4rem 0;
+            }
+        }
+
+        /* Section Titles */
         .section-title {
-            font-size: 1.875rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             padding-bottom: 0.75rem;
             border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
         }
 
+        @media (min-width: 640px) {
+            .section-title { font-size: 1.875rem; margin-bottom: 2rem; }
+        }
+
+        /* Post Cards Mobile */
         .post-card {
             background: var(--bg-card);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             border: 1px solid var(--border);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -278,144 +468,227 @@
         .post-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 1.5rem;
+            padding: 1.25rem;
             position: relative;
         }
 
+        @media (min-width: 640px) {
+            .post-header { padding: 1.5rem; }
+        }
+
         .post-category {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+            display: inline-block;
             background: var(--accent);
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
         }
 
         .post-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            padding-right: 6rem;
+            font-size: 1.15rem;
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .post-header h3 { font-size: 1.5rem; }
         }
 
         .post-meta {
             opacity: 0.9;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 640px) {
+            .post-meta { font-size: 0.875rem; }
         }
 
         .post-body {
-            padding: 2rem;
+            padding: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .post-body { padding: 2rem; }
         }
 
         .post-body h4 {
             color: var(--primary);
-            margin: 1.5rem 0 0.75rem;
-            font-size: 1.25rem;
+            margin: 1.25rem 0 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        @media (min-width: 640px) {
+            .post-body h4 { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; }
         }
 
         .post-body h4:first-child { margin-top: 0; }
 
+        /* Content Grid Mobile */
         .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
             margin: 1rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
         }
 
         .content-box {
             background: var(--bg-soft);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: var(--radius);
             border-left: 4px solid var(--secondary);
+        }
+
+        @media (min-width: 640px) {
+            .content-box { padding: 1.5rem; }
         }
 
         .content-box h5 {
             color: var(--secondary);
             margin-bottom: 0.75rem;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .content-box ul {
             margin-left: 1.25rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        .content-box li {
-            margin-bottom: 0.5rem;
+        @media (min-width: 640px) {
+            .content-box ul { font-size: 0.95rem; }
         }
+
+        .content-box li { margin-bottom: 0.5rem; }
 
         .highlight-box {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             border-left: 4px solid var(--accent);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: var(--radius);
-            margin: 1.5rem 0;
+            margin: 1.25rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .highlight-box { padding: 1.5rem; margin: 1.5rem 0; }
         }
 
         .highlight-box h5 {
             color: var(--accent);
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
+        .highlight-box p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 640px) {
+            .highlight-box p { font-size: 1.05rem; }
+        }
+
+        /* Tables Mobile Responsive */
         .table-container {
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 1.25rem 0;
+            -webkit-overflow-scrolling: touch;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            min-width: 600px;
+        }
+
+        @media (min-width: 768px) {
+            table { font-size: 0.9rem; min-width: auto; }
         }
 
         th {
             background: var(--primary);
             color: white;
-            padding: 1rem;
+            padding: 0.75rem;
             text-align: left;
             font-weight: 600;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            th { padding: 1rem; }
         }
 
         td {
-            padding: 1rem;
+            padding: 0.75rem;
             border-bottom: 1px solid var(--border);
+            background: var(--bg-card);
         }
 
-        tr:nth-child(even) {
-            background: var(--bg-soft);
+        @media (min-width: 640px) {
+            td { padding: 1rem; }
         }
 
+        tr:nth-child(even) td { background: var(--bg-soft); }
+
+        /* Day Cards Mobile */
         .day-card {
             background: white;
             border: 2px solid var(--border);
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.25rem;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
 
-        .day-card:hover {
-            border-color: var(--secondary);
-            box-shadow: var(--shadow);
+        @media (min-width: 640px) {
+            .day-card { padding: 1.5rem; }
         }
+
+        .day-card:hover { border-color: var(--secondary); box-shadow: var(--shadow); }
 
         .day-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 0.5rem;
             margin-bottom: 1rem;
             padding-bottom: 0.75rem;
             border-bottom: 2px solid var(--border);
         }
 
+        @media (min-width: 640px) {
+            .day-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
         .day-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .day-title { font-size: 1.25rem; }
         }
 
         .day-hours {
@@ -423,30 +696,47 @@
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            display: inline-block;
+            width: fit-content;
         }
 
-        /* Sidebar */
+        .day-card .content-grid { margin-top: 0.75rem; }
+
+        /* Sidebar Mobile */
         .sidebar {
-            position: sticky;
-            top: 100px;
-            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            order: 2;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: sticky;
+                top: 100px;
+                height: fit-content;
+                order: 0;
+            }
         }
 
         .widget {
             background: var(--bg-card);
             border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            padding: 1.25rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
         }
 
+        @media (min-width: 640px) {
+            .widget { padding: 1.5rem; }
+        }
+
         .widget-title {
-            font-size: 1.125rem;
+            font-size: 1.1rem;
             color: var(--primary);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             padding-bottom: 0.75rem;
             border-bottom: 2px solid var(--border);
             display: flex;
@@ -454,21 +744,25 @@
             gap: 0.5rem;
         }
 
-        .nav-list {
-            list-style: none;
+        @media (min-width: 640px) {
+            .widget-title { font-size: 1.125rem; margin-bottom: 1.25rem; }
         }
 
-        .nav-list li {
-            margin-bottom: 0.5rem;
-        }
+        .nav-list { list-style: none; }
+        .nav-list li { margin-bottom: 0.5rem; }
 
         .nav-list a {
             display: block;
-            padding: 0.75rem;
+            padding: 0.625rem;
             background: var(--bg-soft);
             border-radius: var(--radius);
             border-left: 3px solid transparent;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 640px) {
+            .nav-list a { padding: 0.75rem; }
         }
 
         .nav-list a:hover {
@@ -481,68 +775,103 @@
         .competence-item {
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.75rem;
+            gap: 0.5rem;
+            padding: 0.625rem;
             background: var(--bg-soft);
             border-radius: var(--radius);
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        @media (min-width: 640px) {
+            .competence-item { padding: 0.75rem; font-size: 0.9rem; gap: 0.75rem; }
         }
 
         .competence-icon {
             color: var(--accent);
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 640px) {
+            .competence-icon { font-size: 1.25rem; }
         }
 
         .download-btn {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
             color: white;
-            padding: 1rem;
+            padding: 0.75rem;
             border-radius: var(--radius);
             margin-bottom: 0.75rem;
             transition: transform 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        .download-btn:hover {
-            transform: translateX(5px);
+        @media (min-width: 640px) {
+            .download-btn { padding: 1rem; gap: 0.75rem; }
         }
 
-        .download-btn i {
-            font-size: 1.25rem;
-        }
+        .download-btn:hover { transform: translateX(5px); }
+        .download-btn i { font-size: 1.1rem; }
 
-        /* Footer */
+        /* Footer Mobile */
         footer {
             background: var(--primary);
             color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 4rem;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            footer { padding: 3rem 0 1.5rem; margin-top: 4rem; }
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
+        @media (min-width: 768px) {
+            .footer-content {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
         .footer-section h4 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
             color: var(--accent-light);
+        }
+
+        @media (min-width: 640px) {
+            .footer-section h4 { font-size: 1.25rem; margin-bottom: 1.5rem; }
         }
 
         .footer-section p, .footer-section li {
             opacity: 0.9;
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
-        .footer-section ul {
-            list-style: none;
+        .footer-section ul { list-style: none; }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            padding-left: 5px;
         }
 
         .footer-bottom {
@@ -550,15 +879,22 @@
             padding-top: 1.5rem;
             text-align: center;
             opacity: 0.8;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
         }
 
+        @media (min-width: 640px) {
+            .footer-bottom { font-size: 0.875rem; }
+        }
+
+        .footer-bottom p { margin-bottom: 0.5rem; }
+
+        /* Scroll Button */
         .scroll-top {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
+            bottom: 1rem;
+            right: 1rem;
+            width: 45px;
+            height: 45px;
             background: var(--accent);
             color: white;
             border: none;
@@ -567,7 +903,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             box-shadow: var(--shadow-lg);
             opacity: 0;
             visibility: hidden;
@@ -575,49 +911,34 @@
             z-index: 999;
         }
 
+        @media (min-width: 640px) {
+            .scroll-top { bottom: 2rem; right: 2rem; width: 50px; height: 50px; font-size: 1.25rem; }
+        }
+
         .scroll-top.visible {
             opacity: 1;
             visibility: visible;
         }
 
-        @media (max-width: 1024px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                position: static;
-            }
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
+        .scroll-top:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
 
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary);
-                padding: 1rem;
-                display: none;
-            }
-            nav.active {
-                display: block;
-            }
-            nav ul {
-                flex-direction: column;
-            }
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+        /* Touch targets mejorados */
+        button, a { touch-action: manipulation; }
+
+        /* Prevent text zoom on iOS */
+        @supports (-webkit-touch-callout: none) {
+            body { -webkit-text-size-adjust: 100%; }
         }
+
+        /* Utilidades mobile */
+        .hidden-mobile { display: none; }
+        @media (min-width: 768px) { .hidden-mobile { display: initial; } }
+
+        .show-mobile { display: initial; }
+        @media (min-width: 768px) { .show-mobile { display: none; } }
     </style>
 <base target="_blank">
 </head>
@@ -637,17 +958,17 @@
                     <span>Unidad Didáctica DP</span>
                 </a>
 
-                <button class="mobile-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
+                <button class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars" id="menuIcon"></i>
                 </button>
 
                 <nav id="mainNav">
                     <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#fundamentos">Fundamentos</a></li>
-                        <li><a href="#contexto">Contexto</a></li>
-                        <li><a href="#desarrollo">Desarrollo</a></li>
-                        <li><a href="#evaluacion">Evaluación</a></li>
+                        <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
+                        <li><a href="#fundamentos" onclick="closeMenu()">Fundamentos</a></li>
+                        <li><a href="#contexto" onclick="closeMenu()">Contexto</a></li>
+                        <li><a href="#desarrollo" onclick="closeMenu()">Desarrollo</a></li>
+                        <li><a href="#evaluacion" onclick="closeMenu()">Evaluación</a></li>
                     </ul>
                 </nav>
             </div>
@@ -662,15 +983,13 @@
                         <i class="fas fa-book-open"></i> Semana #6
                     </span>
                     <h1>Unidad Didáctica en Diálisis Peritoneal</h1>
-                    <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 1.5rem;">
-                        Educación en Autocuidado para Pacientes de Diálisis Peritoneal basado en la metodología de <strong>Jiménez & Faus (2019)</strong> y <strong>Colombia Aprende</strong>.
-                    </p>
+                    <p>Educación en Autocuidado para Pacientes de Diálisis Peritoneal basado en la metodología de <strong>Jiménez & Faus (2019)</strong> y <strong>Colombia Aprende</strong>.</p>
 
                     <div class="hero-meta">
                         <p><strong>Estudiante:</strong> Yerlis Berrio Barrios</p>
                         <p><strong>Materia:</strong> Pedagogía y Currículo</p>
                         <p><strong>Profesor:</strong> Jose Alonso Andrade Salasar</p>
-                        <p><strong>Fecha de Entrega:</strong> 20/02/2026</p>
+                        <p><strong>Fecha:</strong> 20/02/2026</p>
                     </div>
 
                     <div class="stats-grid">
@@ -798,7 +1117,7 @@
                 </article>
 
                 <!-- CONTEXTO EDUCATIVO -->
-                <h2 class="section-title" id="contexto" style="margin-top: 3rem;">
+                <h2 class="section-title" id="contexto" style="margin-top: 2rem;">
                     <i class="fas fa-hospital"></i> 02. Contexto Educativo
                 </h2>
 
@@ -825,7 +1144,7 @@
                         <h4>Población Objetivo</h4>
                         <div class="content-grid">
                             <div>
-                                <ul style="margin-left: 1.5rem; line-height: 2;">
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
                                     <li>Pacientes con ERC que inician tratamiento de diálisis peritoneal</li>
                                     <li>Cuidadores designados (familiares o personas de apoyo)</li>
                                     <li>Edad predominante: Adultos mayores (60+ años)</li>
@@ -878,13 +1197,11 @@
 
                         <div class="content-box" style="margin-top: 1rem; border-left-color: var(--accent);">
                             <h5 style="color: var(--accent);">Saber Ser (Desarrollo del Autocuidado)</h5>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <ul>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem;">
+                                <ul style="margin-left: 1.25rem;">
                                     <li><strong>Responsabilidad:</strong> Asumir el control de su tratamiento</li>
                                     <li><strong>Adherencia:</strong> Compromiso con el tratamiento</li>
                                     <li><strong>Autonomía:</strong> Independencia en el manejo domiciliario</li>
-                                </ul>
-                                <ul>
                                     <li><strong>Comunicación:</strong> Saber solicitar ayuda cuando sea necesario</li>
                                     <li><strong>Adaptación:</strong> Integrar DP a la vida diaria</li>
                                 </ul>
@@ -899,7 +1216,7 @@
                 </article>
 
                 <!-- DESARROLLO DE LA UNIDAD -->
-                <h2 class="section-title" id="desarrollo" style="margin-top: 3rem;">
+                <h2 class="section-title" id="desarrollo" style="margin-top: 2rem;">
                     <i class="fas fa-chalkboard-teacher"></i> 03. Desarrollo de la Unidad Didáctica
                 </h2>
 
@@ -952,12 +1269,12 @@
                     <div class="post-body">
                         <div class="highlight-box">
                             <h5>Objetivo General</h5>
-                            <p style="margin: 0; font-size: 1.05rem;">Capacitar al paciente y/o cuidador para realizar la diálisis peritoneal en su domicilio de forma autónoma, con seguridad y con resultados clínicos óptimos.</p>
+                            <p style="margin: 0; font-size: 1rem;">Capacitar al paciente y/o cuidador para realizar la diálisis peritoneal en su domicilio de forma autónoma, con seguridad y con resultados clínicos óptimos.</p>
                         </div>
 
                         <h4>Objetivos Específicos</h4>
                         <div class="content-box">
-                            <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.8;">
                                 <li>Disminuir la ansiedad y temor del paciente por iniciar DP en su domicilio</li>
                                 <li>Preparar, motivar y apoyar al paciente para fomentar el autocuidado, rehabilitación y autonomía</li>
                                 <li>Educar al paciente para desarrollar conocimientos, actitudes y habilidades que le capaciten</li>
@@ -1008,16 +1325,16 @@
                             </div>
                             <div class="content-grid">
                                 <div>
-                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Función renal y consecuencias de ERC</li>
                                         <li>Membrana peritoneal como filtro</li>
                                         <li>Cuidados del catéter (cura del orificio)</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Demostraciones de técnica por la enfermera</li>
                                         <li>Observación activa del paciente</li>
                                         <li>Inicio de práctica guiada</li>
@@ -1033,16 +1350,16 @@
                             </div>
                             <div class="content-grid">
                                 <div>
-                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Modalidades de DP (CAPD y APD)</li>
                                         <li>Manejo de materiales y equipos</li>
                                         <li>Almacenamiento y conservación</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Práctica supervisada del paciente</li>
                                         <li>Corrección de errores en tiempo real</li>
                                     </ul>
@@ -1057,16 +1374,16 @@
                             </div>
                             <div class="content-grid">
                                 <div>
-                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Complicaciones: prevención y detección</li>
                                         <li>Signos de peritonitis</li>
                                         <li>Balance hídrico y sus alteraciones</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Repaso y refuerzo de técnica</li>
                                         <li>Desarrollo de habilidades motoras</li>
                                         <li>Automatización de movimientos</li>
@@ -1082,16 +1399,16 @@
                             </div>
                             <div class="content-grid">
                                 <div>
-                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Conceptos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Higiene personal y del entorno</li>
                                         <li>Toma de constantes vitales</li>
                                         <li>Registros y documentación</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">Procedimientos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Práctica consistente y fluida</li>
                                         <li>Resolución de problemas</li>
                                         <li>Manejo de alarmas en cicladora</li>
@@ -1108,16 +1425,16 @@
                             </div>
                             <div class="content-grid">
                                 <div>
-                                    <h5 style="color: var(--accent); margin-bottom: 0.5rem;">Conceptos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 0.9rem;">Conceptos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li>Adaptación de DP a la vida diaria</li>
                                         <li>Plan de seguimiento</li>
                                         <li>Vías de comunicación con la unidad</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h5 style="color: var(--accent); margin-bottom: 0.5rem;">Procedimientos</h5>
-                                    <ul style="margin-left: 1.25rem; font-size: 0.95rem;">
+                                    <h5 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 0.9rem;">Procedimientos</h5>
+                                    <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                         <li><strong>Evaluación práctica de competencias</strong></li>
                                         <li>Demostración autónoma de técnica</li>
                                         <li>Retroalimentación final</li>
@@ -1128,7 +1445,7 @@
 
                         <div class="highlight-box" style="margin-top: 1.5rem;">
                             <h5>Estrategias Metodológicas Aplicadas</h5>
-                            <ul style="margin-left: 1.25rem; margin-top: 0.5rem;">
+                            <ul style="margin-left: 1.25rem; margin-top: 0.5rem; font-size: 0.9rem;">
                                 <li>De situaciones conocidas a desconocidas</li>
                                 <li>De conceptos simples a complejos</li>
                                 <li>Favorecer la práctica: <strong>"aprender haciendo"</strong></li>
@@ -1141,8 +1458,8 @@
                 </article>
 
                 <!-- EVALUACIÓN -->
-                <h2 class="section-title" id="evaluacion" style="margin-top: 3rem;">
-                    <i class="fas fa-clipboard-check"></i> 04. Implementación y Seguimiento
+                <h2 class="section-title" id="evaluacion" style="margin-top: 2rem;">
+                    <i class="fas fa-clipboard-check"></i> 04. Evaluación y Seguimiento
                 </h2>
 
                 <article class="post-card">
@@ -1156,7 +1473,7 @@
                             <div class="content-box">
                                 <h5><i class="fas fa-sync-alt"></i> Evaluación Formativa</h5>
                                 <p>Proceso continuo durante cada sesión que permite ajustar la enseñanza según el progreso del paciente.</p>
-                                <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                <ul style="margin-top: 0.5rem; font-size: 0.85rem;">
                                     <li>Observación directa de habilidades motoras</li>
                                     <li>Repaso de conceptos al inicio de sesión</li>
                                     <li>Retroalimentación inmediata</li>
@@ -1166,7 +1483,7 @@
                             <div class="content-box">
                                 <h5><i class="fas fa-check-circle"></i> Evaluación Sumativa</h5>
                                 <p>Evaluación final al término de las 5 sesiones para verificar el logro de competencias.</p>
-                                <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                <ul style="margin-top: 0.5rem; font-size: 0.85rem;">
                                     <li>Cuestionario teórico sobre conceptos esenciales</li>
                                     <li>Demostración práctica autónoma</li>
                                     <li>Reconocimiento de signos de alerta</li>
@@ -1259,14 +1576,14 @@
                         <div class="content-grid">
                             <div>
                                 <h4>Contacto Telefónico</h4>
-                                <ul style="margin-left: 1.25rem; margin-bottom: 1rem;">
+                                <ul style="margin-left: 1.25rem; margin-bottom: 1rem; font-size: 0.9rem;">
                                     <li><strong>Regular post-entrenamiento:</strong> Llamadas programadas para verificar adaptación domiciliaria</li>
                                     <li><strong>Línea de emergencia 24/7:</strong> Disponibilidad para consultas urgentes fuera del horario habitual</li>
                                     <li><strong>Resolución de dudas:</strong> Canal directo para aclarar inquietudes</li>
                                 </ul>
 
                                 <h4>Visitas Domiciliarias</h4>
-                                <ul style="margin-left: 1.25rem;">
+                                <ul style="margin-left: 1.25rem; font-size: 0.9rem;">
                                     <li>Periódicas programadas para evaluar entorno</li>
                                     <li>Observación de técnica mantenida</li>
                                     <li>Apoyo al cuidador</li>
@@ -1274,7 +1591,7 @@
                             </div>
                             <div>
                                 <h4>Grupos de Apoyo</h4>
-                                <ul style="margin-left: 1.25rem; margin-bottom: 1rem;">
+                                <ul style="margin-left: 1.25rem; margin-bottom: 1rem; font-size: 0.9rem;">
                                     <li>Entre pacientes: intercambio de experiencias</li>
                                     <li>Talleres de refuerzo grupales</li>
                                     <li>Fortalecimiento emocional</li>
@@ -1282,8 +1599,8 @@
 
                                 <div class="highlight-box" style="margin: 0;">
                                     <h5>Reentrenamientos Programados</h5>
-                                    <p style="margin-bottom: 0.5rem;"><strong>Primer Reentrenamiento:</strong> Después de 1 mes (verificación de técnica, resolución de dudas, evaluación de adaptación)</p>
-                                    <p style="margin: 0;"><strong>Periódicos:</strong> Cada 6 meses (actualización, verificación de competencias, detección de malos hábitos)</p>
+                                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;"><strong>Primer Reentrenamiento:</strong> Después de 1 mes (verificación de técnica, resolución de dudas, evaluación de adaptación)</p>
+                                    <p style="margin: 0; font-size: 0.9rem;"><strong>Periódicos:</strong> Cada 6 meses (actualización, verificación de competencias, detección de malos hábitos)</p>
                                 </div>
                             </div>
                         </div>
@@ -1296,13 +1613,13 @@
                 </article>
 
                 <!-- BIBLIOGRAFÍA -->
-                <h2 class="section-title" style="margin-top: 3rem;">
+                <h2 class="section-title" style="margin-top: 2rem;">
                     <i class="fas fa-bookmark"></i> Referencias Bibliográficas
                 </h2>
 
                 <article class="post-card">
                     <div class="post-body">
-                        <ul style="line-height: 2; font-size: 0.95rem;">
+                        <ul style="line-height: 1.8; font-size: 0.9rem;">
                             <li><strong>Baena et al. (2008)</strong> - Elementos estructurales de la programación didáctica</li>
                             <li><strong>Colombia Aprende (2024)</strong> - Evaluar para Avanzar. ICFES</li>
                             <li><strong>Contreras (1998)</strong> - Diseño curricular y programación didáctica</li>
@@ -1324,6 +1641,7 @@
                 <div class="widget">
                     <h3 class="widget-title"><i class="fas fa-list"></i> Contenido</h3>
                     <ul class="nav-list">
+                        <li><a href="#inicio"><i class="fas fa-home" style="margin-right: 0.5rem;"></i> Inicio</a></li>
                         <li><a href="#fundamentos"><i class="fas fa-book" style="margin-right: 0.5rem;"></i> Fundamentos Teóricos</a></li>
                         <li><a href="#contexto"><i class="fas fa-hospital" style="margin-right: 0.5rem;"></i> Contexto Educativo</a></li>
                         <li><a href="#desarrollo"><i class="fas fa-chalkboard-teacher" style="margin-right: 0.5rem;"></i> Desarrollo de la Unidad</a></li>
@@ -1359,14 +1677,14 @@
                     <h3 class="widget-title" style="color: white; border-bottom-color: rgba(255,255,255,0.3);">
                         <i class="fas fa-download"></i> Descargas
                     </h3>
-                    <a href="#" class="download-btn" style="background: rgba(255,255,255,0.2);">
+                    <a href="#" class="download-btn">
                         <i class="fas fa-file-pdf"></i>
                         <div>
                             <div style="font-weight: 600;">Unidad Didáctica PDF</div>
                             <div style="font-size: 0.8rem; opacity: 0.9;">Versión completa</div>
                         </div>
                     </a>
-                    <a href="#" class="download-btn" style="background: rgba(255,255,255,0.2);">
+                    <a href="#" class="download-btn">
                         <i class="fas fa-calendar-alt"></i>
                         <div>
                             <div style="font-weight: 600;">Cronograma 5 Días</div>
@@ -1377,12 +1695,12 @@
 
                 <div class="widget">
                     <h3 class="widget-title"><i class="fas fa-info-circle"></i> Información Académica</h3>
-                    <div style="font-size: 0.95rem; line-height: 1.8;">
+                    <div style="font-size: 0.9rem; line-height: 1.7;">
                         <p><strong>Estudiante:</strong><br>Yerlis Berrio Barrios</p>
-                        <p style="margin-top: 0.75rem;"><strong>Materia:</strong><br>Pedagogía y Currículo</p>
-                        <p style="margin-top: 0.75rem;"><strong>Profesor:</strong><br>Jose Alonso Andrade Salasar</p>
-                        <p style="margin-top: 0.75rem;"><strong>Fecha:</strong><br>20 de febrero de 2026</p>
-                        <p style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+                        <p style="margin-top: 0.5rem;"><strong>Materia:</strong><br>Pedagogía y Currículo</p>
+                        <p style="margin-top: 0.5rem;"><strong>Profesor:</strong><br>Jose Alonso Andrade Salasar</p>
+                        <p style="margin-top: 0.5rem;"><strong>Fecha:</strong><br>20 de febrero de 2026</p>
+                        <p style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border);">
                             <strong>Centro:</strong><br>Centro de Diálisis Santa Margarita<br>
                             <small style="color: var(--text-light);">Lunes a Sábado: 06:00 - 14:00</small>
                         </p>
@@ -1420,7 +1738,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 - Yerlis Berrio Barrios | Pedagogía y Currículo | Prof. Jose Alonso Andrade Salasar</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Basado en la metodología de Jiménez & Faus (2019) y Colombia Aprende</p>
+                <p style="margin-top: 0.5rem; font-size: 0.75rem;">Basado en la metodología de Jiménez & Faus (2019) y Colombia Aprende</p>
             </div>
         </div>
     </footer>
@@ -1430,16 +1748,54 @@
     </button>
 
     <script>
-        // Toggle Menu Mobile
+        // Mobile Menu Functions
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
+            const toggle = document.getElementById('mobileToggle');
+            const icon = document.getElementById('menuIcon');
+
             nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
         }
+
+        function closeMenu() {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.getElementById('mobileToggle');
+            const icon = document.getElementById('menuIcon');
+
+            nav.classList.remove('active');
+            toggle.classList.remove('active');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            document.body.style.overflow = '';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.getElementById('mobileToggle');
+
+            if (nav.classList.contains('active') && 
+                !nav.contains(e.target) && 
+                !toggle.contains(e.target)) {
+                closeMenu();
+            }
+        });
 
         // Scroll Button
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('scrollTop');
-            if (window.scrollY > 300) {
+            if (window.pageYOffset > 300) {
                 btn.classList.add('visible');
             } else {
                 btn.classList.remove('visible');
@@ -1453,9 +1809,15 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.getElementById('mainNav').classList.remove('active');
                 }
             });
+        });
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeMenu();
+            }
         });
     </script>
 </body>
